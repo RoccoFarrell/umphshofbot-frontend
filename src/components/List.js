@@ -10,72 +10,29 @@ class List extends Component {
     formValue: ""
   };
 
-  inputChange = e => {
-    this.setState({addFormValue: e.target.value});
-  };
-
-  formSubmit = e => {
-    const {formValue} = this.state;
-    const {addTodo} = this.props;
-    e.preventDefault();
-    addTodo({title: formValue});
-    this.setState({formValue: ""});
-  };
-
-  renderForm = () => {
-    const {showForm, formValue} = this.state;
-    if (showForm) {
-      return (
-        <div>
-          <form onSubmit={this.formSubmit}>
-            <div>
-              <i>add</i>
-              <input 
-                value={formValue}
-                onChange={this.inputChange}
-                id="toDoNext"
-                type="text"
-              />
-              <label htmlFor="toDoNext">What Next?</label>
-            </div>
-          </form>
-        </div>
-      );
-    }
-  };
-  renderToDo() {
+  renderTweet() {
     const {data} = this.props;
-    const toDos = _.map(data, (value, key) => {
-      return <ListItem key={key} todoId={key} todo={value} />;
+    const tweets = _.map(data, (value, key) => {
+      return <ListItem key={key} tweetId={key} tweet={value} />;
     });
-    if (!_.isEmpty(toDos)) {
-      return toDos;
+    if (!_.isEmpty(tweets)) {
+      return tweets;
     }
     return (
       <div>
-        <h4>You have no more things ToDo!</h4>
+        <h4>You have no tweets!</h4>
       </div>
     );
   }
   componentWillMount() {
-    this.props.fetchTodos();
+    this.props.fetchTweets();
   }
   render() {
-    const {showForm} = this.state;
     return (
       <div>
         <div>
-          {this.renderForm()}
-          {this.renderToDo()}
-        </div>
-        <div>
-          <button onClick={() => this.setState({showForm: !showForm})}>
-          {showForm ? (
-            <i>Close</i>
-          ) : (
-            <i>Add</i>
-          )}
-          </button>
+          <h1>Tweets:</h1>
+          {this.renderTweet()}
         </div>
       </div>
     );

@@ -8,10 +8,13 @@ export const completeTweet = completeTweet => async dispatch => {
   tweetsRef.child(completeTweet).remove();
 };
 export const fetchTweets = () => async dispatch => {
-  tweetsRef.on("value", snapshot => {
-    dispatch({
-      type: FETCH_TWEETS,
-      payload: snapshot.val()
-    });
+  tweetsRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+          dispatch({
+            type: FETCH_TWEETS,
+            payload: doc.data()
+          });
+      });
   });
 };
