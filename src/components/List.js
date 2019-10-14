@@ -2,14 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import * as actions from '../actions';
+import { Feed, Icon } from 'semantic-ui-react'
 import ListItem from './ListItem';
 
 class List extends Component {
-  state = {
-    showForm: false,
-    formValue: ""
-  };
-
   renderTweet() {
     const {data} = this.props;
     console.log(data)
@@ -17,8 +13,8 @@ class List extends Component {
     //   return <ListItem key={key} tweetId={key} tweet={value} />;
     // });
 
-    const tweets = data['tweets'].map((tweet) =>
-      <li>{JSON.stringify(tweet)}</li>
+    const tweets = data['tweets'].map((value) =>
+      <ListItem tweet={value}></ListItem>
     );
 
     if (!_.isEmpty(tweets)) {
@@ -36,10 +32,9 @@ class List extends Component {
   render() {
     return (
       <div>
-        <div>
-          <h1>Tweets:</h1>
-          <ul>{this.renderTweet()}</ul>
-        </div>
+        <Feed>
+          {this.renderTweet()}
+        </Feed>
       </div>
     );
   }
