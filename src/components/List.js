@@ -12,9 +12,15 @@ class List extends Component {
 
   renderTweet() {
     const {data} = this.props;
-    const tweets = _.map(data, (value, key) => {
-      return <ListItem key={key} tweetId={key} tweet={value} />;
-    });
+    console.log(data)
+    // const tweets = _.map(data, (value, key) => {
+    //   return <ListItem key={key} tweetId={key} tweet={value} />;
+    // });
+
+    const tweets = data['tweets'].map((tweet) =>
+      <li>{JSON.stringify(tweet)}</li>
+    );
+
     if (!_.isEmpty(tweets)) {
       return tweets;
     }
@@ -32,7 +38,7 @@ class List extends Component {
       <div>
         <div>
           <h1>Tweets:</h1>
-          {this.renderTweet()}
+          <ul>{this.renderTweet()}</ul>
         </div>
       </div>
     );

@@ -8,11 +8,11 @@ class ListItem extends Component {
     const{tweetId, tweet} = this.props;
     return (
       <div key="tweetName">
-        <h4>
+        <h4 color='black'>
           {tweet.fromUserHandle}
-          {tweet.fromUserName}
-          {tweet.text}
         </h4>
+        <h4>{tweet.fromUserName}</h4>
+        <h4>{tweet.text}</h4>
       </div>
     );
   }
