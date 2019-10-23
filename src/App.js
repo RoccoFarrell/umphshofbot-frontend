@@ -1,32 +1,29 @@
-import React, {Component} from 'react';
-import List from './components/List';
-import Example from './components/Example'
+import React from 'react';
 import './App.css';
-import {
-  Grid,
-  Segment,
-  Container,
-  Divider
-} from 'semantic-ui-react'
+import PropTypes from 'prop-types'
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from './components/Home'
+import RecentTweets from './containers/RecentTweets'
 
-
-class App extends Component {
-  render() {
-    return (
-      <div style={{margin: '20px', marginTop: '50px'}}>
-          <Grid columns={2} stackable textAlign='center'>
-            <Grid.Column width={4}>
-              <h1>Umph's Hall of Fame Votes - Most Recent</h1>
-              <h4 style={{color: '#565656'}}>Vote @UmphsHOFBot on Twitter</h4>
-            </Grid.Column>
-            
-            <Grid.Column width={12} verticalAlign='middle'>
-              <List />
-            </Grid.Column>
-            
-          </Grid>
-      </div>
-    );
-  }
+const borderStyle = {
+  border: '2px solid red'
 }
+
+const App = ({ store }) => (
+  <Provider store={store}>
+    <div height='1em' width='100em' style={borderStyle}>
+      Test Nav Bar
+    </div>
+    <Router>
+      <Route path="/" component={RecentTweets}/>
+      <Route path="/recenttweets" component={RecentTweets}/>
+    </Router>
+  </Provider>
+)
+
+App.propTypes = {
+  store: PropTypes.object.isRequired
+}
+
 export default App;

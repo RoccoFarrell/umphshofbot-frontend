@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import * as actions from '../actions';
-import { Feed, Icon } from 'semantic-ui-react'
+import { Feed } from 'semantic-ui-react'
 import ListItem from './ListItem';
 
 class List extends Component {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {completeTweet} from '../actions';
-import { Feed, Icon } from 'semantic-ui-react'
+// import {connect} from 'react-redux';
+// import {completeTweet} from '../actions';
+import { Feed } from 'semantic-ui-react'
 
 class ListItem extends Component {
 
@@ -22,7 +22,7 @@ class ListItem extends Component {
     return (
       <Feed.Event>
         <Feed.Label>
-          <img src={this.randomizeAvatar()} />
+          <img alt='Random Person Avatar' src={this.randomizeAvatar()} />
         </Feed.Label>
         <Feed.Content>
           <Feed.Summary>
